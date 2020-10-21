@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>两列布局解决方案5-绝对定位</title>
+  <style>
+    *{margin: 0;padding: 0;}
+    #parent{
+      position: relative;
+    }
+    #left{width: 200px;height:500px;background-color: greenyellow;
+      position: absolute;
+      top:0;
+      left:0;
+    }
+    #right{height:800px;background-color: blue;
+      position: absolute;
+      top:0;
+      /* width: 100% - 200px  同时设置方位 就相当于隐式的设置宽度  */
+      left:210px;
+      right:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="parent">
+    <div id="left"></div>
+    <div id="right"></div>
+  </div>
+</body>
+
+</html>

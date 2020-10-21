@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>两列布局解决方案3-float+overflow</title>
+  <style>
+    /*  overflow: hidden; BFC 触发的条件之一
+        BFC特点的模块不会和浮动容器进行重叠
+      */
+    *{margin: 0;padding: 0;}
+    #left{width: 200px;height:500px;background-color: greenyellow;float: left;}
+    #right{height:700px;background-color: blue;overflow: hidden;}
+  </style>
+</head>
+
+<body>
+  <div id="left"></div>
+  <div id="right"></div>
+</body>
+
+</html>

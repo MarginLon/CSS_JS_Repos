@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>两列布局解决方案6-flex弹性盒模型</title>
+  <style>
+    *{margin: 0;padding: 0;}
+    #parent{display:flex;}
+    #left{width: 200px;height:500px;background-color: greenyellow;}
+    /* flex:1 => 100% - 200px 占剩下的所有宽度 */
+    #right{height:700px;background-color: blue;flex:1;}
+  </style>
+</head>
+
+<body>
+  <div id="parent">
+    <div id="left"></div>
+    <div id="right"></div>
+  </div>
+</body>
+
+</html>
