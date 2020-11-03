@@ -6,8 +6,18 @@ xhr.open('get', '/JS/ajax相关/data.json', true);
 xhr.onreadystatechange = function () {
     // xhr.readyState Ajax状态 0~4
     // xhr.status xhr.statusText 服务器返回的网络状态码 2/3/4/5
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log(xhr.responseText);
+
+    // if (xhr.readyState === 4 && xhr.status === 200) {
+    //     console.log(xhr.responseText);
+    // }
+    if (xhr.status === 200) {
+        let n = xhr.readyState;
+        if (n === 2) {
+            console.log("头信息先回来", xhr.getAllResponseHeaders());
+        }
+        if (n === 4) {
+            console.log("主体信息", xhr.responseText);
+        }
     }
 };
 // 4.发送请求（请求信息的主体会基于send的时候发送给服务器）
@@ -27,6 +37,10 @@ POST: 给服务器推送，给的多 拿的少
     put 和delete对应，传递文件和大量信息
 GET传递一般基于URL地址问号传参，POST基于请求主体
 1.GET传递给服务器的信息远远小于POST
-    原因：
+    原因：URL在不同浏览器有长度限制 IE(2KB)，POST理论没有长度限制，但会手动设置限制保证数据传输的高效
+2.安全问题：POST>GET
+    GET基于URL传输，容易被URL劫持；POST相对安全，重要信息可以加密（MD5）
+3.缓存问题：浏览器在处理GET请求时候，如果两次请求的地址+参数都一直，浏览器自己会设置数据缓存（此缓存是不想要的）
+    想不要此缓存，需要保证每次请求的URL都不完全一致；（方案：问号传参末尾+Math.random()/时间戳)
     */ 
 
