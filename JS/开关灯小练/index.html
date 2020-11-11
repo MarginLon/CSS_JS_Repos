@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text\css" href="../../Standard/reset.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            
+        }
+
+        button {
+            padding: 0 20px;
+            line-height: 35px;
+        }
+    </style>
+</head>
+
+<body style="background-color: white">
+    <button id="lamp">close</button>
+    <!-- JS -->
+    <script>
+         let lamp = document.getElementById('lamp');
+         let body = document.body;
+
+            lamp.onclick = function () {
+                let bg = body.style.backgroundColor; //只能控制行内样式
+                if(bg === 'white') {
+                    body.style.backgroundColor = "black";
+                    lamp.innerText = "open";
+                }
+                else {
+                    body.style.backgroundColor = "white";
+                    lamp.innerText = "close";
+                }
+            };
+    </script>
+</body>
+
+</html>
