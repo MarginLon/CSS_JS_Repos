@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #canvas{
+      width:500px;
+      height: 500px;
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width='500' height=500></canvas>
+</body>
+</html>
+<script>
+  let canvas = document.getElementById('canvas');
+  let ctx = canvas.getContext('2d');// 就是我们绘画环境
+  // ctx.translate(0.5,0.5) 可以解决一像素问题  translate(x,y) 把坐标原点移动到 x,y的位置
+  // ctx.translate(100.5,100.5)
+  let grad1 = ctx.createLinearGradient(20,20,20,300)// (x1,y1,x2,y2)x1,y1起始坐标
+  grad1.addColorStop(0,'red')
+  grad1.addColorStop(0.4,'green')
+  grad1.addColorStop(0.8,'yellow')
+  grad1.addColorStop(1,'blue')
+  ctx.save()
+  ctx.beginPath();
+  ctx.moveTo(50,50)
+  ctx.lineTo(50,200)
+  ctx.lineTo(200,200)
+  ctx.closePath();// 闭合线路 把终点和起始点进行连接
+  ctx.strokeStyle = 'red';
+  ctx.lineWidth = 5;
+  ctx.shadowBlur = 20;// 设置模糊半径
+  ctx.shadowColor = '#000'; // 设置阴影的颜色
+  ctx.shadowOffsetX = 10;
+  ctx.shadowOffsetY = 15;
+  ctx.stroke()
+  ctx.fillStyle = grad1// 控制填充颜色的
+  ctx.fill()// 填充 把绘制的图形 进行颜色填充
+  ctx.restore();
+
+
+  ctx.beginPath()
+  ctx.rect(200,200,100,100);// （x,y,w,h）
+  ctx.stroke()
+  ctx.fill()
+  // ctx.fillRect()  相当于 rect 和 fill的结合体
+  // ctx.strokeRect() 相当于 rect和 stroke的结合体
+  // ctx.clearRect(x,y,w,h) x,y 清除矩形的开始的坐标  w,h 
+  // ctx.clearRect(250,250,20,20)
+
+
+  ctx.beginPath();
+  ctx.moveTo(300,100)
+  ctx.arc(300,100,50,0,Math.PI/2,true)// (x,y,r,start,end,bol) bol false 代表 顺时针
+  ctx.closePath()
+  
+  ctx.scale(2,2)
+  
+  ctx.moveTo(150,50)
+  ctx.arc(150,50,50,0,Math.PI/2,false)
+  // ctx.arc(300,100,50,0,Math.PI/2,false)
+  ctx.stroke()
+  ctx.fillStyle = grad1;
+  ctx.fill()
+
+  ctx.font = '40px 微软雅黑'
+  ctx.fillText("Margin",400,200)// (文字，x,y)
+  //ctx.strokeText("Margin",300,200)// (文字，x,y)
+  // ctx.textAlign:  center  left  right
+  // ctx.textBaseline: top  middle  bottom
+
+
+
+
+
+
+
+
+
+
+
+/*   ctx.save();// 保存当前的绘画环境
+  ctx.beginPath();
+  ctx.moveTo(20,20)// (x,y) 把笔尖 放到那个坐标
+  ctx.lineTo(20,400)// (x,y) 把笔尖移动到 20 100的位置
+  let grad1 = ctx.createLinearGradient(20,20,20,300)// (x1,y1,x2,y2)x1,y1起始坐标
+  grad1.addColorStop(0,'red')
+  grad1.addColorStop(0.4,'green')
+  grad1.addColorStop(0.8,'yellow')
+  grad1.addColorStop(1,'blue')
+  ctx.strokeStyle = grad1;
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.restore()//把之前保存的绘画环境放开  save 和 restore中的代码设置 都属于当前那个地方的私有设置
+  
+  ctx.beginPath();
+  ctx.moveTo(20,400)
+  ctx.lineTo(400,400);
+  // 把线的宽度设置成10个像素
+  // ctx.strokeStyle = 'red';
+
+  ctx.lineCap = 'round';// 控制线的两端圆角 
+  ctx.lineJoin = 'round';// 控制两线交叉出的圆角
+  let grad = ctx.createLinearGradient(20,20,300,20)// (x1,y1,x2,y2)x1,y1起始坐标
+  grad.addColorStop(0,'red')
+  grad.addColorStop(0.4,'green')
+  grad.addColorStop(0.8,'yellow')
+  grad.addColorStop(1,'blue')
+  // ctx.strokeStyle = grad;
+  ctx.stroke();// 绘制图形 */
+
+
+</script>

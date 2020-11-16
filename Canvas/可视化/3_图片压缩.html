@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="file" accept="image/jpg,image/png,image/jpeg" id='btn'>
+</body>
+</html>
+<!-- 把对应的图片（缩小） 放到canvas上即可 -->
+<script>
+  let inp = document.getElementById('btn');
+  inp.onchange = function(e){
+    console.log(e)
+    let file = e.target.files[0];//拿到 用户选中的文件
+    // 将文件转成base64
+    let reader = new FileReader();
+    reader.onload = function(e){
+      console.log(e)
+      let url = e.target.result;// 对应的是图片的base64
+      let img = new Image();
+      img.src = url;
+      document.body.appendChild(img)
+      compress(url)
+    }
+    reader.readAsDataURL(file);// 读取base
+  }
+
+  function compress(base_64){
+    let img = new Image();
+    img.src = base_64;
+    img.onload = function(){
+      let canvas = document.createElement('canvas');
+      console.dir(img)
+      canvas.width = img.naturalWidth / 2;
+      canvas.height = img.naturalHeight / 2;
+
+      let ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img,0,0,canvas.width ,canvas.height);
+
+      // document.body.appendChild(canvas)
+      let img_compressed = canvas.toDataURL('image/jpeg',0.2) // 把canvas转成png图片
+      console.log(img_compressed)
+      let img2 = new Image();
+      img2.src = img_compressed;
+      document.body.appendChild(img2)
+    }
+  }
+</script>

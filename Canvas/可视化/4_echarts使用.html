@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      width: 500px;
+      height: 500px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+</html>
+<script src="./node_modules/echarts/dist/echarts.js"></script>
+<script>
+  let app = document.getElementById('app');
+  let charts = echarts.init(app);
+  var option = {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    // color:'#fff',
+    tooltip: {
+      trigger: 'item',
+      formatter(obj) {
+        console.log(arguments)
+        return '<h2>gagaga</h2>'
+      }
+    },
+    title: {
+      text: "你好珠峰", // 标题
+      link: "https://baidu.com", // 标题对应的链接
+      textStyle: {
+        color: '#fff'
+      },
+      subtext: "哈哈", // 副标题
+    },
+    legend: {
+      data: ['销量1','销量2','销量3','销量4']
+    },
+    xAxis: {
+      type: 'category',
+      name: "哈哈",
+      nameLocation: 'middle',
+      nameTextStyle: {
+        color: 'red',
+        fontSize: 20
+      },
+      nameGap: 30,
+      nameRotate: 90,
+      data: ['111', '222', '3333', '444', '111', '222', '3333', '444', '555'],
+      axisTick: {
+        interval: 1
+      },
+      axisLine: {
+        symbol: ['none', 'arrow'],
+        symbolOffset: [10, 10]
+      }
+
+    },
+    yAxis: {
+      splitLine: {
+        show: false
+      },
+      splitArea: {
+        show: true
+      }
+    },
+    series: [{
+        name: "销量1",
+        type: 'bar',
+        stack: 'haha',
+        label: {
+          show: true
+        },
+        data: [12, 23, 53, 7, 5, 89, 45, 23, 87]
+      },
+      {
+        name: "销量2",
+        type: 'bar',
+        stack: 'haha',
+        label: {
+          show: true,
+          position: 'top',
+          formatter: function (obj) {
+            // console.log(arguments)
+            return obj.value
+          }
+        },
+
+        emphasis: {
+          itemStyle: {
+            color: 'blue'
+          }
+        },
+        data: [12, 23, 53, 7, 5, 89, 45, 23, 87]
+      },
+      {
+        name: "销量3",
+        type: 'bar',
+        stack: 'haha2',
+        label: {
+          show: true
+        },
+        data: [12, 23, 53, 7, 5, 89, 45, 23, 87]
+      },
+      {
+        name: "销量4",
+        type: 'bar',
+        stack: 'haha2',
+        label: {
+          show: true
+        },
+        data: [12, 23, 53, 7, 5, 89, 45, 23, 87]
+      },
+      {
+        name:'折线',
+        type:'line',
+        symbol:'image://https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4022634832,2919162882&fm=26&gp=0.jpg',
+        symbolSize:10,
+        lineStyle:{
+          color:'red'
+        },
+        data: [12, 23, 53, 7, 5, 89, 45, 23, 87]
+      }
+    ]
+  };
+  charts.setOption(option);
+</script>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding:0;
+    }
+    #app{
+      width:100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
+<script src="./node_modules/echarts/dist/echarts.js"></script>
+<script src="./node_modules/echarts/map/js/china.js"></script>
+<script src="./node_modules/jsonp/index.js"></script>
+<script>
+  var app = document.getElementById('app');
+  let charts = echarts.init(app);
+  let option = {
+    title:{
+      text:"珠峰培训",
+      link:'htttp://zhufengpeixun.com',
+      subtext:"12年专注前端",
+      sublink:'htttp://zhufengpeixun.com',
+      left:'center',
+      textStyle:{
+        color:'red',
+        fontSize:40
+      },
+      subtextStyle:{
+        color:'#fff',
+        fontSize:20
+      }
+    },
+    series:[{
+      name:'累计确诊人数',
+      type:'map',
+      map:'china',
+      label:{
+        show:true,
+        color:'#fff',
+        fontSize:10
+      },
+      roam:true,
+      zoom:1.5,
+      data:[],
+      itemStyle:{
+        areaColor:'#f00',
+        borderColor:'#fff',
+        // borderType:'dashed'
+      },
+      emphasis:{
+        label:{
+          color:'#f00',
+          fontSize:12
+        },
+        itemStyle:{
+          areaColor:'yellow'
+        }
+      }
+    }],
+    visualMap:[
+      {
+        type:'piecewise',
+        pieces:[
+          {
+            min:10000
+          },
+          {
+            min:1000,
+            max:9999
+          },
+          {
+            min:100,
+            max:999
+          },
+          {
+            min:10,
+            max:99
+          },
+          {
+            min:1,
+            max:9
+          },
+          {
+            max:0
+          }
+        ],
+        inRange:{
+          color:['#fff','red']
+        },
+        textStyle:{
+          color:'#fff',
+          fontSize:10
+        },
+        itemWidth:15,
+        itemHeight:8,
+        formatter(val1,val2){
+          console.log(val1,val2)
+          if(val2.toString() == 'Infinity'){
+            return '> ' + val1
+          }
+          if(val1.toString() == '-Infinity'){
+            return val2
+          }
+          return val1 + '~' + val2
+        }
+      },
+      // {
+      //   type:'continuous',
+      //   min:0,
+      //   max:9999,
+      //   inRange:{
+      //     color:['#fff','red']
+      //   }
+      // }
+    ],
+    tooltip:{
+      trigger:'item'
+    },
+    toolbox:{
+      show:true,
+      feature:{
+        saveAsImage:{
+          type:'jpeg',
+          name:"疫情地图"
+        }
+      }
+    }
+  }
+  charts.setOption(option);
+  function getData(){
+    jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=1580892522427',(err,data)=>{
+      if(!err){
+        let ary = [];
+        ary = data.data.list.map(item=>({name:item.name,value:item.value}))
+        // console.log(data)
+        option.series[0].data = ary;
+        charts.setOption(option);
+      }
+    })
+  }
+  getData();
+  const PIN = {"中国":"china","北京":"beijing","湖北":"hubei","广东":"guangdong","浙江":"zhejiang","河南":"henan","湖南":"hunan","重庆":"chongqing","安徽":"anhui","四川":"sichuan","山东":"shandong","吉林":"jilin","福建":"fujian","江西":"jiangxi","江苏":"jiangsu","上海":"shanghai","广西":"guangxi","海南":"hainan","陕西":"shanxis","河北":"hebei","黑龙江":"heilongjiang","辽宁":"liaoning","云南":"yunnan","天津":"tianjin","山西":"shanxi","甘肃":"gansu","内蒙古":"neimenggu","台湾":"taiwan","澳门":"aomen","香港":"xianggang","贵州":"guizhou","西藏":"xizang","青海":"qinghai","新疆":"xinjiang","宁夏":"ningxia"}
+  
+  charts.on('click',function(e){
+    console.log(e)
+    let name = e.name;// 省份的名字
+    let pin = PIN[name];
+    if(!pin){
+      option.series[0].map = 'china';
+        charts.setOption(option)
+        return
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open('get','./node_modules/echarts/map/json/province/'+pin+'.json');
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 ){
+        let data = JSON.parse(xhr.response);
+        echarts.registerMap(name,data)
+        option.series[0].map = name;
+        charts.setOption(option)
+      }
+    }
+    xhr.send()
+  })
+</script>
