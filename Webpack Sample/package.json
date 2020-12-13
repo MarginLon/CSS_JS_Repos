@@ -11,8 +11,8 @@
     "webpack": "^5.4.0"
   },
   "keywords": [],
-  "description": "",
   "dependencies": {
     "webpack-cli": "^4.2.0"
-  }
+  },
+  "description": ""
 }
