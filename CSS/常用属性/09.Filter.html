@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fliter滤镜</title>
+    <style>
+        /* blur + opacity + drop-shadow 
+        */
+        .blur {
+            /* 高斯模糊 */
+            -webkit-filter: blur(4px);
+            filter: blur(4px);
+        }
+
+        .brightness {
+            -webkit-filter: brightness(0.30);
+            filter: brightness(0.30);
+        }
+
+        .contrast {
+            -webkit-filter: contrast(180%);
+            filter: contrast(180%);
+        }
+
+        .grayscale {
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+
+        .huerotate {
+            -webkit-filter: hue-rotate(180deg);
+            filter: hue-rotate(180deg);
+        }
+
+        .invert {
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+        }
+
+        .opacity {
+            /* 透明度 */
+            -webkit-filter: opacity(50%);
+            filter: opacity(50%);
+        }
+
+        .saturate {
+            -webkit-filter: saturate(7);
+            filter: saturate(7);
+        }
+
+        .sepia {
+            -webkit-filter: sepia(100%);
+            filter: sepia(100%);
+        }
+
+        .shadow {
+            /* 阴影  */
+            -webkit-filter: drop-shadow(8px 8px 10px green);
+            filter: drop-shadow(8px 8px 10px green);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blur"><img src="images/1.jpg" alt=""></div>
+
+    <div class="brightness"><img src="images/1.jpg" alt=""></div>
+
+    <div class="contrast"><img src="images/1.jpg" alt=""></div>
+
+    <div class="grayscale"><img src="images/1.jpg" alt=""></div>
+
+    <div class="huerotate"><img src="images/1.jpg" alt=""></div>
+
+    <div class="invert"><img src="images/1.jpg" alt=""></div>
+
+    <div class="opacity"><img src="images/1.jpg" alt=""></div>
+
+    <div class="saturate"><img src="images/1.jpg" alt=""></div>
+
+    <div class="sepia"><img src="images/1.jpg" alt=""></div>
+
+    <div class="shadow"><img src="images/1.jpg" alt=""></div>
+</body>
+
+</html>

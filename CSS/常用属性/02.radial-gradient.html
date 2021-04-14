@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>radial-gradient径向渐变</title>
+    <style>
+        div {
+            float: left;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+        }
+        .box1{
+            background: radial-gradient(red,green);
+        }
+        .box2{
+            background: radial-gradient(closest-side,green,blue);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 颜色A - B 渐变 -->
+    <div class="box1"></div>
+
+    <!-- 颜色A - B 渐变(渐变的边缘形状与容器距离渐变中心点最近的一边相切) -->
+    <div class="box2"></div>
+
+</body>
+
+</html>

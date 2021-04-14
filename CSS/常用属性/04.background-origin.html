@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background-origin背景参考原点</title>
+    <style>
+        /* 原点坐标点 */
+        div {
+            float: left;
+            width: 500px;
+            height: 300px;
+            margin: 20px;
+            border: 20px dashed red;
+            padding: 30px;
+            background: url(images/1.jpg) no-repeat;
+            background-size: cover;
+        }
+
+        .box1 {
+            /* 包含边框线 */
+            background-origin: border-box;
+        }
+
+        .box2 {
+            /* content 内容 */
+            background-origin: content-box;
+        }
+
+        .box3 {
+            /* 包含padding */
+            background-origin: padding-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+
+    <div class="box2"></div>
+
+    <div class="box3"></div>
+
+    <div class="box4"></div>
+
+
+
+</body>
+
+</html>
