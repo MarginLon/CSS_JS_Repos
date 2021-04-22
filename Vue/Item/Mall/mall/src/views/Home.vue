@@ -6,8 +6,11 @@
 
 <script>
 // @ is an alias to /src
-
+import {getAA} from '@/api/index.js'
 export default {
-  name: 'Home'
+  name: 'Home',
+  created(){
+    getAA();
+  },
 };
 </script>
