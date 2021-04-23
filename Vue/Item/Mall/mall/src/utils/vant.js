@@ -1,4 +1,5 @@
 import Vue from 'vue'
-import { Button } from 'vant'
-
-Vue.use(Button)
+import { Button,NavBar } from 'vant'
+[Button, NavBar].forEach(item => {
+    Vue.use(item)
+})
