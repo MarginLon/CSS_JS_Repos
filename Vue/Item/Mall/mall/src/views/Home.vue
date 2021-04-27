@@ -5,8 +5,6 @@
       left-text="返回"
       right-text="按钮"
       left-arrow
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
     ></my-tab-bar>首页
   </div>
 </template>
@@ -19,9 +17,11 @@ export default {
   created() {
     // getCart();
   },
-  method:{
-    onClickLeft(){},
-    onClickRight(){},
-  }
+  // method:{
+  //   @click-left="onClickLeft"
+  //   @click-right="onClickRight"
+  //   onClickLeft(){},
+  //   onClickRight(){},
+  // }
 };
 </script>
